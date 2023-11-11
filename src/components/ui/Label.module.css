@@ -1,0 +1,15 @@
+.title {
+  color: #035157;
+  width: 20%;
+}
+/* For screens smaller than or equal to 768px (e.g., mobile devices) */
+@media (max-width: 768px) {
+  .title {
+    width: 100%;
+  }
+}
+.asterisk {
+  vertical-align: super;
+  font-size: smaller;
+}
+

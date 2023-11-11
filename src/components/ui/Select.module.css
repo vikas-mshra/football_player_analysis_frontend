@@ -1,0 +1,10 @@
+.main {
+  width: 328px;
+}
+
+/* For screens smaller than or equal to 768px (e.g., mobile devices) */
+@media (max-width: 768px) {
+  .main {
+    width: 50%;
+  }
+}

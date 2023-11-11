@@ -1,0 +1,28 @@
+.div {
+  text-align: center;
+  width: 100%;
+}
+
+.button {
+  background: #d8d8d8;
+  color: #035157;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5vw;
+  width: 100%
+}
+
+.button:focus,
+.button:hover,
+.button:active {
+  background-color: #00b1af;
+  border-color: #e2e0e0;
+  outline: none;
+}
+
+.button:disabled {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
