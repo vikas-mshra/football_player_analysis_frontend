@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { json, useLoaderData } from "react-router-dom";
+import { json, useLoaderData, useNavigate } from "react-router-dom";
 import ErrorModal from "../components/ErrorModal";
 import { Input } from "../components/ui/Input";
 import { Label } from "../components/ui/Label";
@@ -14,7 +14,7 @@ const NewPlayerPage = (props) => {
   const [position, setPostion] = useState();
   const [citizenship, setCitizenship] = useState();
   const [modal, setModal] = useState(null);
-
+  const navigate = useNavigate();
   const loaderData = useLoaderData();
   const onChange = async () => {
     try {
@@ -55,6 +55,7 @@ const NewPlayerPage = (props) => {
           },
         }
       );
+      console.log("player added successfully");
       setModal({
         title: "Success",
         message: ["Player successfully created!"],
@@ -78,7 +79,10 @@ const NewPlayerPage = (props) => {
         <ErrorModal
           title={modal.title}
           message={modal.message}
-          onConfirm={() => setModal(null)}
+          onConfirm={() => {
+            setModal(null);
+            navigate("/");
+          }}
         />
       )}
       <div className="row-align">
