@@ -57,7 +57,7 @@ const PlayersPage = () => {
     const { value } = event.target;
     try {
       const response = await axios.put(
-        `http://localhost:5038/updatePlayer/${id}`,
+        `${process.env.REACT_APP_API_URI}/updatePlayer/${id}`,
         {
           [field]: value,
         },
@@ -71,6 +71,7 @@ const PlayersPage = () => {
         setModal({
           title: "Success",
           message: [response.data.message],
+          isPlayerData: null,
         });
       }
     } catch (error) {
@@ -87,7 +88,7 @@ const PlayersPage = () => {
   const addToFavourites = async (playerId) => {
     try {
       await axios.post(
-        "http://localhost:5038/addToFavourite",
+        `${process.env.REACT_APP_API_URI}/addToFavourite`,
         {
           newDocument: { player_id: playerId },
         },
@@ -103,23 +104,29 @@ const PlayersPage = () => {
   };
   const getPlayerGoalsCount = async (player) => {
     try {
-      const response = await axios.get("http://localhost:5038/goals/count", {
-        params: {
-          playerID: player.player_id,
-          goalType: "Goals",
-        },
-      });
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URI}/goals/count`,
+        {
+          params: {
+            playerID: player.player_id,
+            goalType: "Goals",
+          },
+        }
+      );
       const goalsCount = response.data.goalsCount;
 
-      const res = await axios.get("http://localhost:5038/appearance/count", {
-        params: {
-          playerID: player.player_id,
-        },
-      });
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URI}/appearance/count`,
+        {
+          params: {
+            playerID: player.player_id,
+          },
+        }
+      );
       const appearanceCount = res.data.appearanceCount;
       const playerId = player.player_id;
       const resp = await axios.get(
-        `http://localhost:5038/playerStatus/${playerId}`
+        `${process.env.REACT_APP_API_URI}/playerStatus/${playerId}`
       );
       let isPlayerFavourite = true;
 
@@ -134,6 +141,7 @@ const PlayersPage = () => {
         ],
         playerId: player.player_id,
         isPlayerFavourite,
+        isPlayerData: true,
       });
     } catch (error) {
       console.error(
@@ -142,7 +150,6 @@ const PlayersPage = () => {
       );
     }
   };
-  console.log(modal);
   return (
     <>
       {modal && (
@@ -151,7 +158,7 @@ const PlayersPage = () => {
           message={modal.message}
           onConfirm={() => setModal(null)}
           onClickFavourite={addToFavourites}
-          isPlayerData={true}
+          isPlayerData={modal.isPlayerData}
           isPlayerFavourite={modal.isPlayerFavourite}
           playerId={modal.playerId}
         />
@@ -170,7 +177,9 @@ export default PlayersPage;
 
 export async function loader() {
   try {
-    const response = await axios.get("http://localhost:5038/topPlayers"); // Assuming 3195 is the player ID
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URI}/topPlayers`
+    ); // Assuming 3195 is the player ID
     return response.data;
   } catch (error) {
     console.error("Error occured while fetching players data ", error.message);

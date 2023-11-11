@@ -46,11 +46,11 @@ const CompetetionsPage = () => {
       {params.row.competition_id}
     </strong>
   );
-   
+
   const getClubsCount = async (competetionId) => {
     try {
       const response = await axios.get(
-        "http://localhost:5038/competetion/count",
+        `${process.env.REACT_APP_API_URI}/competetion/count`,
         {
           params: {
             competetionId: competetionId,
@@ -60,9 +60,11 @@ const CompetetionsPage = () => {
       const clubsCount = response.data.clubsCount;
       setModal({
         title: "Competetion Clubs",
-        message: [`Number of Clubs: ${
-          clubsCount.length > 0 ? clubsCount[0].count : `0`
-        }`],
+        message: [
+          `Number of Clubs: ${
+            clubsCount.length > 0 ? clubsCount[0].count : `0`
+          }`,
+        ],
       });
     } catch (error) {
       console.error(
@@ -88,7 +90,9 @@ export default CompetetionsPage;
 
 export async function loader() {
   try {
-    const response = await axios.get("http://localhost:5038/competetions");
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URI}/competetions`
+    );
     return response.data;
   } catch (error) {
     console.error(

@@ -84,7 +84,7 @@ const FavouritesPage = () => {
   const removeFavouritePlayer = async (playerId) => {
     try {
       const response = await axios.get(
-        `http://localhost:5038/removePlayer/${playerId}`
+        `${process.env.REACT_APP_API_URI}/removePlayer/${playerId}`
       );
       console.log(response);
       if (response.status === 200) {
@@ -111,19 +111,25 @@ const FavouritesPage = () => {
   };
   const getPlayerGoalsCount = async (player) => {
     try {
-      const response = await axios.get("http://localhost:5038/goals/count", {
-        params: {
-          playerID: player.player_id,
-          goalType: "Goals",
-        },
-      });
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URI}/goals/count`,
+        {
+          params: {
+            playerID: player.player_id,
+            goalType: "Goals",
+          },
+        }
+      );
       const goalsCount = response.data.goalsCount;
 
-      const res = await axios.get("http://localhost:5038/appearance/count", {
-        params: {
-          playerID: player.player_id,
-        },
-      });
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URI}/appearance/count`,
+        {
+          params: {
+            playerID: player.player_id,
+          },
+        }
+      );
       const appearanceCount = res.data.appearanceCount;
 
       setModal({
@@ -158,7 +164,9 @@ export default FavouritesPage;
 
 export async function loader() {
   try {
-    const response = await axios.get("http://localhost:5038/favouritePlayers");
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URI}/favouritePlayers`
+    );
     return response.data;
   } catch (error) {
     console.error("Error occured while fetching players data ", error.message);

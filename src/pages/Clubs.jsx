@@ -41,7 +41,7 @@ export default ClubsPage;
 
 export async function loader() {
   try {
-    const response = await axios.get("http://localhost:5038/clubs");
+    const response = await axios.get(`${process.env.REACT_APP_API_URI}/clubs`);
     return response.data;
   } catch (error) {
     console.error("Error occured while fetching clubs data ", error.message);

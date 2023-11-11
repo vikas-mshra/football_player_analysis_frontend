@@ -18,9 +18,11 @@ const NewPlayerPage = (props) => {
   const loaderData = useLoaderData();
   const onChange = async () => {
     try {
-      const response = await axios.get("http://localhost:5038/getMaxPlayerId"); // Assuming 3195 is the player ID
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URI}/getMaxPlayerId`
+      );
       const res = await axios.get(
-        `http://localhost:5038/clubDetails/${clubId}`
+        `${process.env.REACT_APP_API_URI}/clubDetails/${clubId}`
       );
 
       const playerId = parseInt(response.data[0].player_id);
@@ -28,7 +30,7 @@ const NewPlayerPage = (props) => {
       const domesticCompetetionId = res.data.domestic_competition_id;
 
       const playerAdded = await axios.post(
-        "http://localhost:5038/addPlayer",
+        `${process.env.REACT_APP_API_URI}/addPlayer`,
         {
           newDocument: {
             player_id: playerId + 1,
@@ -187,7 +189,9 @@ export default NewPlayerPage;
 
 export async function loader() {
   try {
-    const response = await axios.get("http://localhost:5038/getClubIds"); // Assuming 3195 is the player ID
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URI}/getClubIds`
+    ); // Assuming 3195 is the player ID
     return {
       clubIds: response.data,
     };
