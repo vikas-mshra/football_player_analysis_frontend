@@ -5,37 +5,38 @@ import ErrorModal from "../components/ErrorModal";
 import Table from "../components/Table";
 
 const columns = [
-  { field: "player_id", headerName: "ID", width: 90 },
+  { field: "player_id", renderHeader: () => <b>ID</b>, width: 90 },
   {
     field: "name",
-    headerName: "Name",
+    renderHeader: () => <b>Name</b>,
     width: 150,
   },
   {
     field: "image_url",
-    headerName: "Pic",
+    renderHeader: () => <b>Pic</b>,
     width: 100,
   },
   {
     field: "current_club_name",
+    renderHeader: () => <b>Club Name</b>,
     headerName: "Club Name",
     width: 150,
   },
   {
     field: "position",
-    headerName: "Position",
+    renderHeader: () => <b>Position</b>,
     width: 70,
     editable: true,
   },
   {
     field: "highest_market_value_in_eur",
-    headerName: "MarketValue (in euro)",
+    renderHeader: () => <b>MarketValue (in euro)</b>,
     type: "number",
     width: 200,
   },
   {
     field: "country_of_birth",
-    headerName: "Citizenship",
+    renderHeader: () => <b>Citizenship</b>,
     sortable: true,
     width: 100,
   },
@@ -179,7 +180,7 @@ export async function loader() {
   try {
     const response = await axios.get(
       `${process.env.REACT_APP_API_URI}/topPlayers`
-    ); // Assuming 3195 is the player ID
+    );
     return response.data;
   } catch (error) {
     console.error("Error occured while fetching players data ", error.message);

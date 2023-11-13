@@ -6,7 +6,7 @@ const WelcomePage = () => {
 
   return (
     <div>
-      <header>Welcome</header>
+      <header>Football Transfer Market</header>
       <div className="dFlx m10px jCntSEven">
         <Button width="auto" onClick={() => navigate("/players")}>
           Players
@@ -17,8 +17,6 @@ const WelcomePage = () => {
         <Button width="auto" onClick={() => navigate("/competetions")}>
           Competetions
         </Button>
-      </div>
-      <div className="dFlx m10px jCntSEven">
         <Button width="auto" onClick={() => navigate("/favourites")}>
           Favourites
         </Button>

@@ -4,33 +4,33 @@ import axios from "axios";
 import { useState } from "react";
 import ErrorModal from "../components/ErrorModal";
 const columns = [
-  { field: "competition_id", headerName: "ID", width: 90 },
+  { field: "competition_id", width: 90, renderHeader: () => <b>ID</b> },
   {
     field: "name",
-    headerName: "Name",
+    renderHeader: () => <b>Name</b>,
     width: 150,
     editable: true,
   },
   {
     field: "country_name",
-    headerName: "Country Name",
+    renderHeader: () => <b>Country Name</b>,
     width: 150,
   },
   {
     field: "type",
-    headerName: "Type",
+    renderHeader: () => <b>Type</b>,
     width: 200,
     editable: true,
   },
   {
     field: "sub_type",
-    headerName: "Sub Type",
+    renderHeader: () => <b>Sub Type</b>,
     width: 200,
     editable: true,
   },
   {
     field: "url",
-    headerName: "URL",
+    renderHeader: () => <b>URL</b>,
     sortable: false,
     width: 200,
   },

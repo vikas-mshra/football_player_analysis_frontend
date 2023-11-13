@@ -74,7 +74,9 @@ const NewPlayerPage = (props) => {
     }
   };
   return (
-    <div>
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
       {modal && (
         <ErrorModal
           title={modal.title}
@@ -85,7 +87,7 @@ const NewPlayerPage = (props) => {
           }}
         />
       )}
-      <div className="row-align">
+      <div className="row-align analysis_step_one_form_block">
         <Label
           htmlFor="firstName"
           title="First Name"
@@ -98,7 +100,6 @@ const NewPlayerPage = (props) => {
           id="firstName"
           name="firstName"
           onChange={(event) => setFirstName(event.target.value)}
-          width="170px"
         />
       </div>
       <div className="row-align analysis_step_one_form_block">

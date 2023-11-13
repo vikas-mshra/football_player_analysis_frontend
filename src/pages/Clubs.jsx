@@ -2,33 +2,33 @@ import { json, useLoaderData } from "react-router-dom";
 import Table from "../components/Table";
 import axios from "axios";
 const columns = [
-  { field: "club_id", headerName: "ID", width: 90 },
+  { field: "club_id", renderHeader: () => <b>ID</b>, width: 90 },
   {
     field: "name",
-    headerName: "Name",
+    renderHeader: () => <b>Name</b>,
     width: 150,
     editable: true,
   },
   {
     field: "squad_size",
-    headerName: "Squad",
+    renderHeader: () => <b>Squad</b>,
     width: 150,
   },
   {
     field: "stadium_name",
-    headerName: "Stadium Name",
+    renderHeader: () => <b>Stadium Name</b>,
     width: 200,
     editable: true,
   },
   {
     field: "net_transfer_record",
-    headerName: "Total Amount Spend",
+    renderHeader: () => <b>Total Amount Spend</b>,
     width: 200,
     editable: true,
   },
   {
     field: "last_season",
-    headerName: "Last Season",
+    renderHeader: () => <b>Last Season</b>,
     sortable: true,
     width: 100,
   },

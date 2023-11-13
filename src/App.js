@@ -19,10 +19,6 @@ const App = () => {
       element: <RootLayoutPage />,
       children: [
         {
-          index: true,
-          element: <WelcomePage />,
-        },
-        {
           path: "players",
           element: <PlayersPage />,
           loader: getPlayersData,

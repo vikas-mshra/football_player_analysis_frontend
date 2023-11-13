@@ -5,36 +5,36 @@ import { useState } from "react";
 import ErrorModal from "../components/ErrorModal";
 import Button from "../components/ui/Button";
 const columns = [
-  { field: "player_id", headerName: "ID", width: 90 },
+  { field: "player_id", width: 90, renderHeader: () => <b>ID</b> },
   {
     field: "name",
-    headerName: "Name",
+    renderHeader: () => <b>Name</b>,
     width: 150,
     editable: true,
   },
   {
     field: "image_url",
     headerAlign: "center",
-    headerName: "Pic",
+    renderHeader: () => <b>Pic</b>,
     width: 100,
   },
   {
     field: "current_club_name",
     headerAlign: "center",
-    headerName: "Club Name",
+    renderHeader: () => <b>Club Name</b>,
     width: 150,
   },
   {
     field: "position",
     headerAlign: "center",
-    headerName: "Position",
+    renderHeader: () => <b>Position</b>,
     width: 70,
     editable: true,
   },
   {
     field: "market_value_in_eur",
     headerAlign: "center",
-    headerName: "MarketValue (in euro)",
+    renderHeader: () => <b>MarketValue (in euro)</b>,
     type: "number",
     width: 200,
     editable: true,
@@ -42,7 +42,7 @@ const columns = [
   {
     field: "country_of_birth",
     headerAlign: "center",
-    headerName: "Citizenship",
+    renderHeader: () => <b>Citizenship</b>,
     sortable: true,
     width: 100,
   },
