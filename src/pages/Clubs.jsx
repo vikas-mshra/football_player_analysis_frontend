@@ -1,6 +1,8 @@
 import { json, useLoaderData } from "react-router-dom";
 import Table from "../components/Table";
 import axios from "axios";
+import ErrorModal from "../components/ErrorModal";
+import { useState } from "react";
 const columns = [
   { field: "club_id", renderHeader: () => <b>ID</b>, width: 90 },
   {
@@ -35,7 +37,43 @@ const columns = [
 ];
 const ClubsPage = () => {
   const loaderData = useLoaderData();
-  return <Table data={loaderData} columns={columns} pkey="club_id" />;
+  const [modal, setModal] = useState(null);
+
+  columns[1].renderCell = (params) => (
+    <strong onClick={() => getAllPlayers(params.row.club_id)} className="cPntr">
+      {params.row.name}
+    </strong>
+  );
+  const getAllPlayers = async (clubId) => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URI}/getAllPlayers/${clubId}`
+      );
+      const players = response.data;
+      setModal({
+        title: "Players List",
+        message: [players],
+      });
+    } catch (error) {
+      console.error(`Error fetching players for ${clubId}:`, error);
+      setModal({
+        title: "Error Occures",
+        message: [`Error fetching players for ${clubId}:`, error],
+      });
+    }
+  };
+  return (
+    <>
+      {modal && (
+        <ErrorModal
+          title={modal.title}
+          message={modal.message}
+          onConfirm={() => setModal(null)}
+        />
+      )}
+      <Table data={loaderData} columns={columns} pkey="club_id" />
+    </>
+  );
 };
 export default ClubsPage;
 

@@ -60,28 +60,11 @@ export default function Table({
     rowHeight,
     pageSizeOptions: [5],
     disableRowSelectionOnClick: false,
-    onCellEditStop: { handleCellEditCommit },
+    onCellEditStop: handleCellEditCommit,
   };
   return (
     <div className="dFlx jCntCenter">
       <Box>
-        {/* <DataGrid
-          rows={data}
-          columns={columns}
-          getRowId={(row) => row[pkey]}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
-              },
-            },
-          }}
-          rowHeight={rowHeight}
-          pageSizeOptions={[5]}
-          disableRowSelectionOnClick
-          onCellEditStop={handleCellEditCommit}
-        /> */}
-
         <StripedDataGrid
           loading={false}
           {...dataObj}
