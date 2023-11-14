@@ -49,10 +49,15 @@ const ClubsPage = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URI}/getAllPlayers/${clubId}`
       );
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URI}/clubGames/count/${clubId}`
+      );
+
       const players = response.data;
+      const { gamesCount } = res.data;
       setModal({
-        title: "Players List",
-        message: [players],
+        title: "Club Details",
+        message: [`Number of Games: ${gamesCount}`, players],
       });
     } catch (error) {
       console.error(`Error fetching players for ${clubId}:`, error);
