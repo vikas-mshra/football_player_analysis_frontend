@@ -25,7 +25,7 @@ const columns = [
   {
     field: "position",
     renderHeader: () => <b>Position</b>,
-    width: 70,
+    width: 100,
     editable: true,
   },
   {
@@ -135,7 +135,7 @@ const PlayersPage = () => {
         isPlayerFavourite = false;
       }
       setModal({
-        title: "Player Goals",
+        title: "Player Details",
         message: [
           `Number of goals: ${goalsCount[0]?.count ?? "0"}`,
           `Number of appearances: ${appearanceCount[0]?.count ?? "0"}`,
